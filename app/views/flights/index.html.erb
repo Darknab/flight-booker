@@ -16,6 +16,7 @@
 <% end %>
 
 <h2> Available flights </h2>
+<div class="results">
 <% if @flights %>
   <% @flights.each do |flight| %>
     <div class="flights">
@@ -32,3 +33,4 @@
 <% else %>
   <p> Please run a search to display available flight </p>
 <% end %>
+</div>

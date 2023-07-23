@@ -1,0 +1,17 @@
+body {
+    background-color: #1f2937;
+    color: #e7e5e4;
+    padding: 1em;
+}
+
+.flights {
+    background-color: steelblue;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.results {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+}
