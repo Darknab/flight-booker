@@ -10,27 +10,19 @@
   <%= form.collection_select :from_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime_formatted %>
   <%= form.label :to_date, "To date:" %>
   <%= form.collection_select :to_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime_formatted %>
-  <%= form.label :passengers, "Number of passengers:" %>
-  <%= form.select :passengers, [ [1, 1], [2, 2], [3, 3], [4, 4] ] %>
+  <%= form.label :tickets, "Number of tickets:" %>
+  <%= form.select :tickets, [ [1, 1], [2, 2], [3, 3], [4, 4] ] %>
   <%= form.submit "Search flight" %>
 <% end %>
 
-<h2> Available flights </h2>
-<div class="results">
-<% if @flights %>
+
+<h2> Choose a flight: </h2>
+<%= form_with url: 'bookings/new', method: :get do |form| %>
   <% @flights.each do |flight| %>
-    <div class="flights">
-      <h3> Departure airport: </h3>
-      <p> <%= flight.departure_airport.name %> </p>
-      <h3> Arrival airport: </h3>
-      <p> <%= flight.arrival_airport.name %> </p>
-      <h3> Take off: </h3>
-      <p> <%= flight.start_datetime %> </p>
-      <h3> Arrival at <%= flight.arrival_airport.name %>: </h3>
-      <p> <%= flight.start_datetime + flight.flight_duration.minutes %> </p>
-    </div>
+    <%= form.radio_button :start_datetime, :start_datetime_formatted %>
+    <%= hidden_field :tickets, params[:tickets] %>
+    <%= form.label :flight_id, " #{flight.departure_airport.name} - #{flight.arrival_airport.name} : #{flight.start_datetime_formatted}" %>
+    <br>
   <% end %>
-<% else %>
-  <p> Please run a search to display available flights </p>
+  <%= form.submit "book" %>
 <% end %>
-</div>
