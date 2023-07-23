@@ -21,7 +21,7 @@ csv.each do |row|
   f.departure_airport_id = row['departure_airport']
   f.arrival_airport_id = row['arrival_airport']
   f.flight_duration = row['flight_duration']
-  f.start_datetime = row['flight_datetime']
+  f.start_datetime = row['start_datetime']
   f.save
 end
 
