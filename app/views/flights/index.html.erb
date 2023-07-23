@@ -7,9 +7,9 @@
   <%= form.label :arrival_airport, "Arrival airport:" %>
   <%= form.collection_select :arrival_airport, Airport.all, :id, :name %>
   <%= form.label :from_date, "From date:" %>
-  <%= form.collection_select :from_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime %>
+  <%= form.collection_select :from_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime_formatted %>
   <%= form.label :to_date, "To date:" %>
-  <%= form.collection_select :to_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime %>
+  <%= form.collection_select :to_date, Flight.order(:start_datetime).distinct, :start_datetime, :start_datetime_formatted %>
   <%= form.label :passengers, "Number of passengers:" %>
   <%= form.select :passengers, [ [1, 1], [2, 2], [3, 3], [4, 4] ] %>
   <%= form.submit "Search flight" %>
@@ -31,6 +31,6 @@
     </div>
   <% end %>
 <% else %>
-  <p> Please run a search to display available flight </p>
+  <p> Please run a search to display available flights </p>
 <% end %>
 </div>
