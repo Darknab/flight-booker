@@ -19,8 +19,8 @@
 <h2> Choose a flight: </h2>
 <%= form_with url: 'bookings/new', method: :get do |form| %>
   <% @flights.each do |flight| %>
-    <%= form.radio_button :start_datetime, :start_datetime_formatted %>
-    <%= hidden_field :tickets, params[:tickets] %>
+    <%= form.radio_button :flight_id, flight.id %>
+    <%= hidden_field_tag :tickets, params[:tickets] %>
     <%= form.label :flight_id, " #{flight.departure_airport.name} - #{flight.arrival_airport.name} : #{flight.start_datetime_formatted}" %>
     <br>
   <% end %>

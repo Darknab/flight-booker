@@ -1,0 +1,10 @@
+<h1> Book a flight </h1>
+
+<p><strong>Flight #</strong> <%= @flight.id %> </p>
+<p><strong>From: </strong> <%= @flight.departure_airport.name %> </p>
+<p><strong>To: </strong> <%= @flight.arrival_airport.name %> </p>
+<p><strong>Take off:</strong> <%= @flight.start_datetime_formatted %> </p>
+
+<h2> Passengers: </h2>
+
+
