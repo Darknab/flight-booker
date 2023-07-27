@@ -15,14 +15,19 @@
   <%= form.submit "Search flight" %>
 <% end %>
 
-
-<h2> Choose a flight: </h2>
-<%= form_with url: 'bookings/new', method: :get do |form| %>
-  <% @flights.each do |flight| %>
-    <%= form.radio_button :flight_id, flight.id %>
-    <%= form.label :flight_id, " #{flight.departure_airport.name} - #{flight.arrival_airport.name} : #{flight.start_datetime_formatted}" %>
-    <br>
+<% if @flights.any? %>
+  <h2> Choose a flight: </h2>
+  <%= form_with url: 'bookings/new', method: :get do |form| %>
+    <% @flights.each do |flight| %>
+      <%= form.radio_button :flight_id, flight.id %>
+      <%= form.label :flight_id, " #{flight.departure_airport.name} - #{flight.arrival_airport.name} : #{flight.start_datetime_formatted}" %>
+      <br>
+    <% end %>
+    <%= hidden_field_tag :tickets, params[:tickets] %>
+    <%= form.submit "book" %>
   <% end %>
-  <%= hidden_field_tag :tickets, params[:tickets] %>
-  <%= form.submit "book" %>
+<% else %>
+  <p> Please run a search to find a flight </p>
 <% end %>
+
+
