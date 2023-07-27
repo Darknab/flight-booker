@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/flights/search', to: 'flights#search'
 
   resources :bookings, only: [:new, :create, :show]
+  resources :trips, only: [:create]
+  resources :passengers, only: [:create]
 end

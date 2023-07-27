@@ -8,3 +8,25 @@
 <h2> Passengers: </h2>
 
 
+<%= form_with model: @booking do |form| %>
+  <% if @booking.errors.any? %>
+    <h3> <%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved: </h3>
+    <ul>
+      <% @booking.errors.full_messages do |message|%>
+        <li> <%= message %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= hidden_field_tag :flight_id, @flight.id %>
+  <%= form.fields_for :trips do |trip| %>
+    <%= trip.fields_for :passenger do |passenger_form| %>
+      <%= passenger_form.label :name, "name:" %>
+      <%= passenger_form.text_field :name %>
+      <%= passenger_form.label :email, "email:" %>
+      <%= passenger_form.email_field :email %>
+      <br> 
+    <% end %>
+  <% end %>
+  <%= form.submit "book" %>
+<% end %>
