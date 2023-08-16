@@ -1,10 +1,9 @@
 class PassengerMailer < ApplicationMailer
   def confirmation_mail
+    @flight = params[:flight]
+    @passenger = params[:passenger]
     @booking = params[:booking]
-    @passengers = @booking.passengers
-    
-    @passenger.each do |passenger|
-      mail(to:passenger.email, subject: 'Booking complete!')
-    end
+
+    mail(to:@passenger.email, subject: 'Booking complete!')
   end
 end

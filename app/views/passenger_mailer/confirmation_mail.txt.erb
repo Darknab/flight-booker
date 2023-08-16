@@ -1,5 +1,5 @@
-Congratulations <%= passenger.name%>, You are registered for the flight #<%= @booking.flight_id %> on TheOdinProject Airlines
+Congratulations <%= @passenger.name%>, You are registered for the flight #<%= @flight.id %> on TheOdinProject Airlines
 
-Click <%= link_to 'here', flight_url(@booking.flight) %> to see all the useful informations about your flight.
+Click <%= link_to 'here', booking_url(@booking) %> to see all the useful informations about your flight.
 
 Bon voyage!
